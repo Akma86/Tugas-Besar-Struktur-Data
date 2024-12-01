@@ -10,11 +10,47 @@ void insertLast(List &L, address p){
 }
 void insertFirst(List &L, address p);
 void insertAfter(List &L, address p);
-void deleteLast(List &L, address &p);
-void deleteFirst(List &L, address &p);
-void deleteAfter(List &L, address &p);
+void deleteLast(List &L, address &p) {
+    if (L.first->next == nullptr && L.last->prev == nullptr) {
+        p = L.first;
+        L.first = nullptr;
+        L.last = nullptr;
+    }else {
+        p = L.last;
+        L.last = p->prev;
+        L.last->next = nullptr;
+        p->prev = nullptr;
+    }
+};
+void deleteFirst(List &L, address &p) {
+    if (L.first->next == nullptr && L.last->prev == nullptr) {
+        p = L.first;
+        L.first = nullptr;
+        L.last = nullptr;
+    }else {
+        p = L.first;
+        L.first = p->next;
+        L.first->prev = nullptr;
+        p->next = nullptr;
+    }
+};
+void deleteAfter(List &L, address &p, string prec) {
+    address a;
+    a = L.first;
+    p = a->next;
+    while (a->data != prec) {
+        a = a->next;
+        p = p->next;
+    }
+    a->next = p->next;
+    (p->next)->prev = a;
+    p->prev = nullptr;
+    p->next = nullptr;
+
+
+};
 void copyPaste (List &L);
-void undoRedo (List &L, List &V)
+void undoRedo (List &L, List &V);
 void wordCounter(List L) {
     address temp = L.first;
     while (temp != nullptr) {
