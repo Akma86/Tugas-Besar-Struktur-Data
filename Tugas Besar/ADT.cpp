@@ -5,11 +5,56 @@ address createNode(string x){
     Node->next = nullptr;
     return Node;
 }
-void insertLast(List &L, address p){
 
+void createList(List &L) {
+    L.first = nullptr;
+    L.last = nullptr;
 }
-void insertFirst(List &L, address p);
-void insertAfter(List &L, address p);
+
+void insertLast(List &L, address p){
+        if (L.first == nullptr) {
+        L.first = p;
+        L.last = p;
+    } else {
+        L.last->next = p;
+        p->prev = L.last;
+        L.last = p;
+    }
+}
+void insertFirst(List &L, address p){
+    if (L.first == nullptr) {
+        L.first = p;
+        L.last = p;
+        std::cout << "Node pertama berhasil ditambahkan.\n";
+    } else {
+        p->next = L.first;
+        L.first->prev = p;
+        L.first = p;
+        std::cout << "Node berhasil ditambahkan di awal.\n";
+    }
+}
+void insertAfter(List &L, address p, string prec){
+    address temp = L.first;
+
+    while (temp != nullptr && temp->data != prec) {
+        temp = temp->next;
+    }
+
+    if (temp != nullptr) {
+        p->next = temp->next;
+        if (temp->next != nullptr) {
+            temp->next->prev = p;
+        }
+        temp->next = p;
+        p->prev = temp;
+
+        if (temp == L.last) {
+            L.last = p;
+        }
+    } else {
+        cout << "Teks '" << prec << "' tidak ditemukan.\n";
+    }
+}
 void deleteLast(List &L, address &p) {
     if (L.first->next == nullptr && L.last->prev == nullptr) {
         p = L.first;
@@ -21,7 +66,8 @@ void deleteLast(List &L, address &p) {
         L.last->next = nullptr;
         p->prev = nullptr;
     }
-};
+}
+
 void deleteFirst(List &L, address &p) {
     if (L.first->next == nullptr && L.last->prev == nullptr) {
         p = L.first;
@@ -33,7 +79,8 @@ void deleteFirst(List &L, address &p) {
         L.first->prev = nullptr;
         p->next = nullptr;
     }
-};
+}
+
 void deleteAfter(List &L, address &p, string prec) {
     address a;
     a = L.first;
@@ -48,8 +95,42 @@ void deleteAfter(List &L, address &p, string prec) {
     p->next = nullptr;
 
 
-};
-void copyPaste (List &L);
+}
+
+void copyPaste(List &L, const std::string &pSub, const std::string &qSub) {
+    address pNode = nullptr;
+    address qNode = nullptr;
+
+    // Gunakan searching untuk menemukan node sumber dan tujuan
+    searching(L, pNode, pSub);
+    if (pNode == nullptr) {
+        std::cout << "Substring sumber '" << pSub << "' tidak ditemukan.\n";
+        return;
+    }
+
+    searching(L, qNode, qSub);
+    if (qNode == nullptr) {
+        std::cout << "Substring tujuan '" << qSub << "' tidak ditemukan.\n";
+        return;
+    }
+
+    // Buat node baru dengan data dari node sumber
+    address newNode = createNode(pNode->data);
+
+    // Sisipkan node baru setelah node tujuan
+    if (qNode->next == nullptr) {
+        insertLast(L, newNode); // Jika tujuan adalah node terakhir
+    } else {
+        newNode->next = qNode->next;
+        newNode->prev = qNode;
+        qNode->next->prev = newNode;
+        qNode->next = newNode;
+    }
+
+    std::cout << "Data '" << pNode->data << "' berhasil disalin setelah '" << qNode->data << "'.\n";
+}
+
+
 void undoRedo (List &L, List &V);
 void wordCounter(List L) {
     address temp = L.first;
@@ -70,6 +151,10 @@ void wordCounter(List L) {
 }
 
 void printInfo(List L) {
+    if (L.first == nullptr) {
+        std::cout << "List kosong.\n";
+        return;
+    }
     address temp = L.first;
     while (temp != nullptr) {
         std::cout << temp->data << std::endl;
@@ -77,7 +162,8 @@ void printInfo(List L) {
     }
 }
 
-void searching(List L, address &p, std::string cari) {
+
+void searching(List L, address &p, const std::string &cari) {
     address temp = L.first;
     p = nullptr;
 
