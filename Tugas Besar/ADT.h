@@ -10,6 +10,8 @@ using namespace std;
 // Alias untuk pointer pada node Stack
 typedef struct Stack *address;
 
+typedef struct MLL *addressmll;
+
 // Struktur data untuk Stack node
 struct Stack {
     string data;      // Data yang disimpan pada node
@@ -22,6 +24,19 @@ struct List {
     address first;    // Pointer ke node pertama dalam list
     address last;     // Pointer ke node terakhir dalam list
 };
+
+struct MLL {
+    addressmll next;
+    addressmll prev;
+    address history;
+};
+
+struct riwayat {
+    addressmll first;
+    addressmll last;
+    int undocount;
+};
+
 
 // Membuat sebuah node baru dengan data 'x'
 address createNode(string x);
@@ -61,5 +76,10 @@ void printInfo(List L);
 
 // Mencari substring 'cari' dalam list dan mengembalikan pointer ke node yang relevan
 void searching(List L, address &p, const std::string &cari);
+
+void createRiwayat(riwayat &r);
+addressmll createMll(address x);
+void addHistory(riwayat &r, List L);
+void undo(riwayat &r, List &L);
 
 #endif // ADT_H_INCLUDED

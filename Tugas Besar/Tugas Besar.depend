@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1733058553 source:c:\users\naba\onedrive\desktop\naba\semester3\struktur_data\tubes\tugas-besar-struktur-data\tugas besar\main.cpp
+1733494789 source:c:\users\naba\onedrive\desktop\naba\semester3\struktur_data\tubes\tugas-besar-struktur-data\tugas besar\main.cpp
 	<iostream>
-
-1733059494 source:c:\users\naba\onedrive\desktop\naba\semester3\struktur_data\tubes\tugas-besar-struktur-data\tugas besar\adt.cpp
 	"ADT.h"
 
-1733059490 c:\users\naba\onedrive\desktop\naba\semester3\struktur_data\tubes\tugas-besar-struktur-data\tugas besar\adt.h
+1733495516 source:c:\users\naba\onedrive\desktop\naba\semester3\struktur_data\tubes\tugas-besar-struktur-data\tugas besar\adt.cpp
+	"ADT.h"
+
+1733494707 c:\users\naba\onedrive\desktop\naba\semester3\struktur_data\tubes\tugas-besar-struktur-data\tugas besar\adt.h
 	<iostream>
 	<algorithm>
 	<sstream>

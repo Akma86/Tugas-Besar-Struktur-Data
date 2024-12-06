@@ -12,6 +12,8 @@ int main()
     string input, cari;
     address p;
     bool kondisi = true;
+    riwayat history;
+    createRiwayat(history);
     while (kondisi){
         cout << "\nMenu:\n";
         cout << "1. Penyisipan teks\n";
@@ -26,7 +28,7 @@ int main()
         cout << "Pilih opsi: ";
         cin >> pilihan;
         cin.ignore(); // Menghapus newline dari buffer
-        
+
         if (pilihan == 1){
             string inputText;
             int posisi;
@@ -35,9 +37,9 @@ int main()
             cout << "Pilih posisi:\n1. Awal\n2. Akhir\nPilihan: ";
             cin >> posisi;
             cin.ignore(); // Clean buffer dari input
-            
+
             address newNode = createNode(inputText);
-            
+
             if (posisi == 1) {
                 insertFirst(myList, newNode);
                 cout << "Teks disisipkan di awal.\n";
@@ -52,6 +54,7 @@ int main()
             // Print data list setelah penyisipan
             cout << "Data dalam List setelah penyisipan:\n";
             printInfo(myList);
+            addHistory(history, myList);
 
         }else if (pilihan == 2){
             string pSub, qSub;
@@ -62,18 +65,22 @@ int main()
 
             // Panggil fungsi copyPaste
             copyPaste(myList, pSub, qSub);
+            addHistory(history, myList);
         }else if (pilihan == 3){
-        
+            undo(history, myList);
+            cout << "Berhasil redo!" << endl;
+            cout << "Data list:\n";
+            printInfo(myList);
         }else if (pilihan == 4){
-        
+
         }else if (pilihan == 5){
-        
+
         }else if (pilihan == 6){
-        
+
         }else if (pilihan == 7){
             printInfo(myList);
         }else if (pilihan == 8){
-        
+
         } else if (pilihan == 9){
             kondisi = false;
         } else {

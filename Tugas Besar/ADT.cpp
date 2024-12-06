@@ -197,3 +197,76 @@ void searching(List L, address &p, const std::string &cari) {
 
     std::cout << "Kata '" << cari << "' tidak ditemukan di dalam list.\n";
 }
+
+
+void createRiwayat(riwayat &r) {
+    r.first = nullptr;
+    r.last = nullptr;
+    r.undocount = 0;
+}
+
+addressmll createMll(address x) {
+    addressmll elementbaru = new MLL;
+    elementbaru->next = nullptr;
+    elementbaru->prev = nullptr;
+    elementbaru->history = x;
+    return elementbaru;
+}
+
+
+void addHistory(riwayat &r, List L) {
+    List newlist;
+    address newElement;
+    address p = L.first;
+    addressmll k;
+    addressmll newMLL;
+
+    createList(newlist);
+    while (p != nullptr) {
+        newElement = createNode(p->data);
+        insertLast(newlist, newElement);
+        p = p->next;
+    }
+
+    newMLL = createMll(newlist.first);
+    if (r.undocount == 0) {
+        if (r.first == nullptr) {
+            r.first = newMLL;
+            r.last = newMLL;
+        } else {
+            r.last->next = newMLL;
+            newMLL->prev = r.last;
+            r.last = newMLL;
+        }
+    } else {
+        k = r.last;
+        for (int i = 0; i < r.undocount; i++) {
+            k = k->prev;
+        }
+        k->next = newMLL;
+        newMLL->prev = k;
+        r.last = newMLL;
+    }
+    r.undocount = 0;
+
+}
+
+void undo(riwayat &r, List &L) {
+    L.first = nullptr;
+    L.last = nullptr;
+    addressmll p = r.last;
+    address k;
+    address newElementList;
+    for (int i = 0; i < r.undocount; i++) {
+        p = p->prev;
+    }
+    p = p->prev;
+    k = p->history;
+    while (k != nullptr) {
+        newElementList = createNode(k->data);
+        insertLast(L, newElementList);
+        k = k->next;
+    }
+    r.undocount = r.undocount + 1;
+
+}
