@@ -57,15 +57,27 @@ int main()
             addHistory(history, myList);
 
         }else if (pilihan == 2){
-            string pSub, qSub;
-            cout << "Masukkan teks yang ingin disalin: ";
-            getline(cin, pSub);
-            cout << "Masukkan teks tujuan: ";
-            getline(cin, qSub);
+            int sumberIndex, tujuanIndex;
+            cout << "Masukkan indeks node sumber untuk disalin: ";
+            cin >> sumberIndex;
+            cin.ignore();
+            cout << "Masukkan indeks node tujuan untuk menyisipkan teks: ";
+            cin >> tujuanIndex;
+            cin.ignore();
 
-            // Panggil fungsi copyPaste
-            copyPaste(myList, pSub, qSub);
-            addHistory(history, myList);
+            // Validasi indeks sumber dan tujuan
+            address pSource = getNodeByIndex(myList, sumberIndex);
+            address pTarget = getNodeByIndex(myList, tujuanIndex);
+
+            if (pSource == nullptr) {
+                cout << "Node sumber dengan indeks " << sumberIndex << " tidak ditemukan.\n";
+            } else if (pTarget == nullptr) {
+                cout << "Node tujuan dengan indeks " << tujuanIndex << " tidak ditemukan.\n";
+            } else {
+                // Panggil fungsi copyPaste
+                copyPaste(myList, pSource->data, pTarget->data);
+                addHistory(history, myList);
+            }
         }else if (pilihan == 3){
             undo(history, myList);
             cout << "Berhasil redo!" << endl;
