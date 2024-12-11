@@ -125,8 +125,19 @@ void copyPaste(List &L, const std::string &pSub, const std::string &qSub) {
         return;
     }
 
-    // Buat node baru dengan data dari node sumber
-    address newNode = createNode(pNode->data);
+    // Gabungkan semua kata dari node sumber hingga akhir list menjadi satu kalimat
+    std::string fullSentence;
+    address temp = pNode;
+    while (temp != nullptr) {
+        if (!fullSentence.empty()) {
+            fullSentence += " "; // Tambahkan spasi antar kata
+        }
+        fullSentence += temp->data;
+        temp = temp->next;
+    }
+
+    // Buat node baru dengan data berupa kalimat lengkap
+    address newNode = createNode(fullSentence);
 
     // Sisipkan node baru setelah node tujuan
     if (qNode->next == nullptr) {   // Jika tujuan adalah node terakhir
@@ -138,7 +149,7 @@ void copyPaste(List &L, const std::string &pSub, const std::string &qSub) {
         qNode->next = newNode;
     }
 
-    std::cout << "Data '" << pNode->data << "' berhasil disalin setelah '" << qNode->data << "'.\n";
+    std::cout << "Kalimat '" << fullSentence << "' berhasil disalin setelah '" << qNode->data << "'.\n";
 }
 
 // Menghitung jumlah kata dalam teks pada setiap node
