@@ -14,6 +14,21 @@ void createList(List &L) {
     L.last = nullptr;   // List awal kosong, tidak ada elemen terakhir
 }
 
+address getNodeByIndex(List &L, int index) {
+    address current = L.first;
+    int count = 0;
+
+    while (current != nullptr) {
+        if (count == index) {
+            return current;
+        }
+        current = current->next;
+        count++;
+    }
+    return nullptr; // Jika indeks tidak valid
+}
+
+
 // Menambahkan elemen di akhir list
 void insertLast(List &L, address p) {
     if (L.first == nullptr) {  // Jika list kosong

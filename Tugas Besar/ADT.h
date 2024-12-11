@@ -41,6 +41,9 @@ struct riwayat {
 // Membuat sebuah node baru dengan data 'x'
 address createNode(string x);
 
+// Mengambil node berdasarkan index (for target)
+address getNodeByIndex(List &L, int index);
+
 // Menginisialisasi list kosong dengan pointer pertama dan terakhir bernilai nullptr
 void createList(List &L);
 
