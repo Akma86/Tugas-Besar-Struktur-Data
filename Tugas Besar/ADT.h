@@ -84,5 +84,6 @@ void createRiwayat(riwayat &r);
 addressmll createMll(address x);
 void addHistory(riwayat &r, List L);
 void undo(riwayat &r, List &L);
+void redo(riwayat &r, List &L);
 
 #endif // ADT_H_INCLUDED

@@ -296,3 +296,38 @@ void undo(riwayat &r, List &L) {
     r.undocount = r.undocount + 1;
 
 }
+
+void redo(riwayat &r, List &L) {
+    // Pastikan bahwa operasi redo hanya dapat dilakukan jika undocount lebih besar dari 0
+    if (r.undocount > 0) {
+        // Reset list L ke keadaan yang akan di-"redo"
+        L.first = nullptr;
+        L.last = nullptr;
+
+        addressmll p = r.last;
+        address k;
+        address newElementList;
+
+        // Navigasi ke node yang sesuai dengan undocount
+        for (int i = 0; i < r.undocount; i++) {
+            p = p->prev;
+        }
+        p = p->next; // Bergerak maju untuk "redo"
+
+        // Ambil history yang akan di-"redo"
+        k = p->history;
+
+        // Salin data dari node history ke list L
+        while (k != nullptr) {
+            newElementList = createNode(k->data);
+            insertLast(L, newElementList);
+            k = k->next;
+        }
+
+        // Kurangi undocount karena kita maju satu langkah dalam riwayat
+        r.undocount = r.undocount - 1;
+    } else {
+        cout << "Tidak ada operasi yang dapat di-redo." << endl;
+    }
+}
+

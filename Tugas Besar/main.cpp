@@ -80,11 +80,14 @@ int main()
             }
         }else if (pilihan == 3){
             undo(history, myList);
-            cout << "Berhasil redo!" << endl;
+            cout << "Berhasil undo!" << endl;
             cout << "Data list:\n";
             printInfo(myList);
         }else if (pilihan == 4){
-
+            redo(history, myList);
+            cout << "Berhasil redo!" << endl;
+            cout << "Data list:\n";
+            printInfo(myList);
         }else if (pilihan == 5){
 
         }else if (pilihan == 6){
