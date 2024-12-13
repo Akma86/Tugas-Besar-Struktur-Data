@@ -95,7 +95,9 @@ int main()
         }else if (pilihan == 7){
             printInfo(myList);
         }else if (pilihan == 8){
-
+            cout << "Masukan kata yang di cari : ";
+            cin >> cari;
+            searching(myList, p, cari);
         } else if (pilihan == 9){
             kondisi = false;
         } else {

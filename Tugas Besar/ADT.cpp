@@ -202,6 +202,7 @@ void printInfo(List L) {
 void searching(List L, address &p, const std::string &cari) {
     address temp = L.first;
     p = nullptr;
+    bool found = false;
 
     while (temp != nullptr) {
         std::string text = temp->data;
@@ -214,14 +215,16 @@ void searching(List L, address &p, const std::string &cari) {
 
         if (it != text.end()) {  // Jika ditemukan
             std::cout << "Kata '" << cari << "' ditemukan di dalam teks: " << text << "\n";
-            p = temp;
-            return;
+            if (p == nullptr){
+                p = temp;
+            }
+            found = true;
         }
-
         temp = temp->next;  // Lanjutkan ke node berikutnya
     }
-
-    std::cout << "Kata '" << cari << "' tidak ditemukan di dalam list.\n";
+    if (!found){
+        std::cout << "Kata '" << cari << "' tidak ditemukan di dalam list.\n";
+    }
 }
 
 
