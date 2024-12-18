@@ -107,6 +107,52 @@ void deleteFirst(List &L, address &p) {
     }
 }
 
+
+void deleteAt(List &L, int posisi, address &P) {
+    if (posisi == 1) {
+        deleteFirst(L, P);
+    } else if (posisi == countElements(L)) {
+        deleteLast(L, P);
+    } else {
+        int count = 1;
+        address current = L.first;
+        while (current != nullptr && count != posisi) {
+            current = current->next;
+            count++;
+        }
+        if (current != nullptr) {
+            P = current;
+            if (current->next != nullptr) {
+                current->next->prev = current->prev;
+            }
+            if (current->prev != nullptr) {
+                current->prev->next = current->next;
+            }
+            P->next = nullptr;
+            P->prev = nullptr;
+        } else {
+            cout << "Posisi tidak valid.\n";
+        }
+    }
+}
+
+
+int countElements(List L) {
+    int count = 0;
+    address P = L.first;
+    while (P != nullptr) {
+        count++;
+        P = P->next;
+    }
+    return count;
+}
+
+void deallocate(address &P) {
+    delete P; // Membebaskan memori elemen P
+    P = nullptr; // Menghindari dangling pointer
+}
+
+
 // Menghapus elemen setelah node tertentu
 void deleteAfter(List &L, address &p, string prec) {
     address a = L.first;   // Mulai pencarian dari elemen pertama
@@ -297,7 +343,6 @@ void undo(riwayat &r, List &L) {
         k = k->next;
     }
     r.undocount = r.undocount + 1;
-
 }
 
 void redo(riwayat &r, List &L) {

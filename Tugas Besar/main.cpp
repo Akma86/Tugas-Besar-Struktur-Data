@@ -15,16 +15,19 @@ int main()
     riwayat history;
     createRiwayat(history);
     while (kondisi){
-        cout << "\nMenu:\n";
-        cout << "1. Penyisipan teks\n";
-        cout << "2. Copy-paste\n";
-        cout << "3. Undo\n";
-        cout << "4. Redo\n";
-        cout << "5. Delete teks\n";
-        cout << "6. Word counter\n";
-        cout << "7. Print teks\n";
-        cout << "8. Searching\n";
-        cout << "9. Selesai\n";
+        cout << "\n=====================================\n";
+        cout << "               MENU                  \n";
+        cout << "=====================================\n";
+        cout << "  1. Penyisipan teks                \n";
+        cout << "  2. Copy-paste                     \n";
+        cout << "  3. Undo                           \n";
+        cout << "  4. Redo                           \n";
+        cout << "  5. Hapus teks                     \n";
+        cout << "  6. Penghitung kata (Word Counter) \n";
+        cout << "  7. Cetak teks                     \n";
+        cout << "  8. Pencarian (Searching)          \n";
+        cout << "  9. Keluar                         \n";
+        cout << "=====================================\n";
         cout << "Pilih opsi: ";
         cin >> pilihan;
         cin.ignore(); // Menghapus newline dari buffer
@@ -50,7 +53,6 @@ int main()
             cout << "Pilihan posisi invalid.\n";
                 delete newNode; // Hapus node jika pilihan invalid
             }
-
             // Print data list setelah penyisipan
             cout << "Data dalam List setelah penyisipan:\n";
             printInfo(myList);
@@ -89,9 +91,23 @@ int main()
             cout << "Data list:\n";
             printInfo(myList);
         }else if (pilihan == 5){
-
+            int posisi;
+            address hapus;
+            cout << "Masukkan posisi elemen yang ingin dihapus (mulai dari 1): ";
+            cin >> posisi;
+            if (posisi == 1) { // Jika posisi adalah elemen pertama
+                deleteFirst(myList, hapus);
+            } else if (posisi == countElements(myList)) { // Jika posisi adalah elemen terakhir
+                deleteLast(myList, hapus);
+            } else {
+                deleteAt(myList,posisi,hapus);
+                cout << "Input harus berupa angka. Silakan coba lagi.\n";
+                deallocate(hapus);
+                cin.clear(); // Res
+            }
+            addHistory(history, myList);
         }else if (pilihan == 6){
-
+            wordCounter(myList);
         }else if (pilihan == 7){
             printInfo(myList);
         }else if (pilihan == 8){

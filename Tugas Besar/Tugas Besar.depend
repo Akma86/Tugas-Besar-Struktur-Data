@@ -12,3 +12,16 @@
 	<sstream>
 	<string>
 
+1734496564 source:c:\users\booma\documents\semester 3\tugas tugas\tugas-besar-struktur-data\tugas besar\adt.cpp
+	"ADT.h"
+
+1734495650 c:\users\booma\documents\semester 3\tugas tugas\tugas-besar-struktur-data\tugas besar\adt.h
+	<iostream>
+	<algorithm>
+	<sstream>
+	<string>
+
+1734495729 source:c:\users\booma\documents\semester 3\tugas tugas\tugas-besar-struktur-data\tugas besar\main.cpp
+	<iostream>
+	"ADT.h"
+

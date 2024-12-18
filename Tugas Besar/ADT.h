@@ -56,14 +56,17 @@ void insertFirst(List &L, address p);
 // Menyisipkan node baru setelah node dengan data 'prec'
 void insertAfter(List &L, address p, string prec);
 
-// Menghapus node terakhir dalam list dan menyimpan pointer node yang dihapus
-void deleteLast(List &L, address &p);
-
-// Menghapus node pertama dalam list dan menyimpan pointer node yang dihapus
 void deleteFirst(List &L, address &p);
 
-// Menghapus node setelah node dengan data 'prec' dan menyimpan pointer node yang dihapus
-void deleteAfter(List &L, address &p, string prec);
+void deleteLast(List &L, address &p);
+
+void deallocate(address &P);
+
+// menghitung elemen ke berapa
+int countElements(List L);
+
+// // Menghapus elemen
+void deleteAt(List &L, int posisi, address &P);
 
 // Menyalin data dari node yang mengandung substring 'pSub' ke node setelah substring 'qSub'
 void copyPaste(List &L, const std::string &pSub, const std::string &qSub);
