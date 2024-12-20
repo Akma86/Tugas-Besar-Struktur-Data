@@ -2,10 +2,10 @@
 
 // Membuat node baru dengan data teks tertentu
 address createNode(string x) {
-    address Node = new Stack;  // Alokasi memori untuk node baru
-    Node->data = x;           // Menyimpan data teks pada node
-    Node->next = nullptr;     // Inisialisasi pointer next menjadi null
-    return Node;              // Mengembalikan alamat node yang dibuat
+    address newNode = new Node;  // Alokasi memori untuk node baru
+    newNode->data = x;           // Menyimpan data teks pada node
+    newNode->next = nullptr;     // Inisialisasi pointer next menjadi null
+    return newNode;              // Mengembalikan alamat node yang dibuat
 }
 
 // Menginisialisasi list kosong

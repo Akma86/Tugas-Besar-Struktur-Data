@@ -60,7 +60,7 @@ int main()
 
         }else if (pilihan == 2){
             int sumberIndex, tujuanIndex;
-            cout << "Masukkan indeks node sumber untuk disalin: ";
+            cout << "Masukkan indeks node sumber untuk disalin (mulai dari 0): ";
             cin >> sumberIndex;
             cin.ignore();
             cout << "Masukkan indeks node tujuan untuk menyisipkan teks: ";

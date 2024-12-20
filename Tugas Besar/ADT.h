@@ -7,13 +7,13 @@
 #include <string>
 using namespace std;
 
-// Alias untuk pointer pada node Stack
-typedef struct Stack *address;
+// Alias untuk pointer pada struct Node
+typedef struct Node *address;
 
 typedef struct MLL *addressmll;
 
-// Struktur data untuk Stack node
-struct Stack {
+// Struktur data untuk node
+struct Node {
     string data;      // Data yang disimpan pada node
     address next;     // Pointer ke node berikutnya
     address prev;     // Pointer ke node sebelumnya
